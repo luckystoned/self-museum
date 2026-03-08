@@ -1,0 +1,55 @@
+/* styles/globals.css — Museum Installation Themes */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-mesh: #050505;
+    --accent-glow: rgba(59, 130, 246, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.05);
+  }
+
+  [data-theme='realista'] {
+    --bg-mesh: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,0.1) 0, transparent 50%);
+    --accent-glow: rgba(59, 130, 246, 0.5);
+  }
+
+  [data-theme='oleo'] {
+    --bg-mesh: radial-gradient(at 0% 0%, hsla(28, 50%, 10%, 1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(45, 60%, 20%, 0.15) 0, transparent 50%);
+    --accent-glow: rgba(217, 119, 6, 0.4);
+    --glass-border: rgba(251, 191, 36, 0.1);
+  }
+
+  [data-theme='cyberpunk'] {
+    --bg-mesh: radial-gradient(at 0% 0%, hsla(320, 80%, 10%, 1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(190, 80%, 10%, 1) 0, transparent 50%);
+    --accent-glow: rgba(236, 72, 153, 0.6);
+    --glass-border: rgba(34, 211, 238, 0.2);
+  }
+
+  [data-theme='galactico'] {
+    --bg-mesh: radial-gradient(at 0% 0%, hsla(260, 50%, 15%, 1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(280, 50%, 10%, 1) 0, transparent 50%);
+    --accent-glow: rgba(167, 139, 250, 0.5);
+    --glass-border: rgba(167, 139, 250, 0.1);
+  }
+  
+  /* Agrega más temas según tus estilos... */
+}
+
+.bg-mesh {
+    background-color: #050505;
+    background-image: var(--bg-mesh);
+    transition: all 0.7s ease;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
+
+.btn-glow {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #d946ef 100%);
+    box-shadow: 0 0 40px var(--accent-glow);
+}
