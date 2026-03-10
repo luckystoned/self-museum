@@ -1,5 +1,5 @@
 import { streamText } from 'ai';
-import { createOllama } from 'ai-sdk-ollama';
+import { createOllama } from 'ollama-ai-provider-v2';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
         const { messages } = await req.json();
 
         const result = streamText({
-            model: ollama('llama3.2'), // Replace with whatever model user has (ej: llama3.2, mistral)
+            model: ollama('deepseek-r1:8b') as any, // Found locally via ollama API
             system: `Eres "El Curador", una inteligencia artificial sofisticada y elegante que guía a las personas en el "Self-Museum". 
       Tu objetivo es ser un oráculo poético de arte. Hazle una o dos preguntas introspectivas cortas al usuario sobre cómo se siente hoy o qué quiere ver (colores, emociones, conceptos). 
       Cuando tengas suficiente información, sugiere de forma muy breve un "prompt para arte digital", por ejemplo: "Te sugiero un paisaje surrealista en tonos neón".

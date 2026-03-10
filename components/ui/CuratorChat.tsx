@@ -9,16 +9,9 @@ export function CuratorChat() {
     const [isOpen, setIsOpen] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    const { messages, input, handleInputChange, handleSubmit, isLoading, error } =
         useChat({
             api: "/api/chat",
-            initialMessages: [
-                {
-                    id: "1",
-                    role: "assistant",
-                    content: "Bienvenido al Museum of Self. Soy El Curador. ¿Qué emociones o colores te gustaría explorar en tu próxima obra?",
-                },
-            ],
         });
 
     // Auto-scroll al último mensaje
@@ -74,8 +67,8 @@ export function CuratorChat() {
                                 >
                                     <div
                                         className={`max-w-[85%] rounded-2xl px-4 py-2 ${m.role === "user"
-                                                ? "bg-emerald-600 text-white rounded-br-none"
-                                                : "bg-neutral-800 text-neutral-200 rounded-bl-none border border-white/5"
+                                            ? "bg-emerald-600 text-white rounded-br-none"
+                                            : "bg-neutral-800 text-neutral-200 rounded-bl-none border border-white/5"
                                             }`}
                                     >
                                         <p className="text-sm leading-relaxed">{m.content}</p>
@@ -86,6 +79,14 @@ export function CuratorChat() {
                                 <div className="flex justify-start">
                                     <div className="bg-neutral-800 text-neutral-400 rounded-2xl rounded-bl-none px-4 py-2 border border-white/5">
                                         <span className="animate-pulse">Escribiendo profecía...</span>
+                                    </div>
+                                </div>
+                            )}
+                            {error && (
+                                <div className="flex justify-center my-2">
+                                    <div className="bg-red-900/30 text-red-300 rounded-lg px-4 py-3 border border-red-500/30 text-center text-sm w-full">
+                                        <p className="font-semibold text-red-400 mb-1">Error de conexión</p>
+                                        <p className="opacity-80 leading-tight">No pudimos contactar al Curador. Verificá que Ollama esté encendido y el modelo exista.</p>
                                     </div>
                                 </div>
                             )}
@@ -105,7 +106,7 @@ export function CuratorChat() {
                             />
                             <button
                                 type="submit"
-                                disabled={!input.trim() || isLoading}
+                                disabled={!(input || '').trim() || isLoading}
                                 className="p-2 bg-emerald-600 hover:bg-emerald-500 disabled:bg-neutral-800 disabled:text-neutral-600 text-white rounded-xl transition-colors"
                             >
                                 <Send size={18} />
