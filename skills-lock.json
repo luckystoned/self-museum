@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "grepai-ollama-setup": {
+      "source": "yoanbernabeu/grepai-skills",
+      "sourceType": "github",
+      "computedHash": "9d180c6fc4896cf22b9569435c644415ee2b499be7fa611675d32a4ef4bf8ee0"
+    }
+  }
+}
